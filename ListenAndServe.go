@@ -10,7 +10,7 @@ import (
 
 func ListenAndServe(handlers map[string]func(params any) any) {
 	var scanner = bufio.NewScanner(os.Stdin)
-	scanner.Split(ScanRequest)
+	scanner.Split(ScanMessage)
 	for scanner.Scan() {
 		go func() {
 			var req messages.Request
