@@ -8,7 +8,10 @@ import (
 	"github.com/Chara-X/lsp/messages"
 )
 
-func Send[T messages.Request | messages.Response](message T) {
+func Notify(name string, params any) {
+	send(messages.Request{JsonRPC: "2.0", Method: name, Params: params})
+}
+func send[T messages.Request | messages.Response](message T) {
 	var body, _ = json.Marshal(message)
 	outMutex.Lock()
 	defer outMutex.Unlock()
