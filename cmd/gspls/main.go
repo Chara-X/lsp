@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Chara-X/lsp"
+	"github.com/Chara-X/lsp/messages"
 	"go.lsp.dev/protocol"
 )
 
@@ -11,8 +12,11 @@ func main() {
 			return protocol.InitializeResult{Capabilities: protocol.ServerCapabilities{}}
 		},
 		"initialized": func(params any) any {
-			lsp.Notify("window/showMessage", protocol.ShowMessageParams{Type: protocol.MessageTypeInfo, Message: "initialized"})
+			Notify("window/showMessage", protocol.ShowMessageParams{Type: protocol.MessageTypeInfo, Message: "initialized"})
 			return nil
 		},
 	})
+}
+func Notify(name string, params any) {
+	lsp.SendMessage(messages.Request{JsonRPC: "2.0", Method: name, Params: params})
 }

@@ -16,7 +16,7 @@ func ListenAndServe(handlers map[string]func(params any) any) {
 			var req messages.Request
 			json.Unmarshal(scanner.Bytes(), &req)
 			if res := handlers[req.Method](req.Params); res != nil {
-				send(messages.Response{JsonRPC: "2.0", ID: req.ID, Result: res})
+				SendMessage(messages.Response{JsonRPC: "2.0", ID: req.ID, Result: res})
 			}
 		}()
 	}
