@@ -1,6 +1,6 @@
 # lsp
 
-## References
+## Reference
 
 [Understanding Language Server Protocol - autocomplete, formatting](https://www.youtube.com/watch?v=EkK8Jxjj95s)
 
